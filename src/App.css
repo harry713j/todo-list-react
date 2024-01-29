@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App h5{
+  margin-right: 5rem;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +39,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.scroll-container{
+  max-height: 25rem;
+  overflow-y: scroll;
+}
+
+.scroll-container::-webkit-scrollbar{
+  width: 12px;
 }
