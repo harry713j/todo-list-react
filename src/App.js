@@ -133,7 +133,7 @@ function App() {
           className="card shadow rounded"
           style={{
             width: "30rem",
-            backgroundColor: "#E8E6E8",
+            backgroundColor: "#F8F3E7",
           }}
         >
           <div className="card-body">
@@ -142,10 +142,10 @@ function App() {
                 <h2
                   className="h2"
                   style={{
-                    color: "#9B07FB",
+                    color: "#A73DF2",
                   }}
                 >
-                  Todo App!
+                  To-Do List!
                 </h2>
                 <AddTodo
                   onInputChange={handleInputTextChange}
@@ -158,10 +158,10 @@ function App() {
               <div className="row-cols-1 mt-3">
                 <h5
                   style={{
-                    color: "#9B07FB",
+                    color: "#A73DF2",
                   }}
                 >
-                  To Do list
+                  List of Tasks
                 </h5>
                 <TodoList
                   todoList={state.tasks}
@@ -173,10 +173,10 @@ function App() {
               <div className="row-cols-1 mt-3">
                 <h5
                   style={{
-                    color: "#9B07FB",
+                    color: "#A73DF2",
                   }}
                 >
-                  Completed task
+                  Finished Tasks
                 </h5>
                 {state.completedTasks.length > 0 && (
                   <CompleteTodo

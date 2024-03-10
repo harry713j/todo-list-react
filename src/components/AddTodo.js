@@ -5,7 +5,7 @@ function AddTodo({ onInputChange, inputTextValue, onAddClick }) {
         type="text"
         value={inputTextValue}
         onChange={onInputChange}
-        placeholder="Add tasks..."
+        placeholder="Add Tasks..."
         className="mt-2 form-control"
       />
       <span className="input-group-append mt-2">
