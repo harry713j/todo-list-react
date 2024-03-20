@@ -1,16 +1,16 @@
+import { useSelector } from "react-redux";
 import Todo from "./Todo";
 
-function TodoList({ todoList, onCheckChange, onEditClick, onDeleteClick }) {
+function TodoList() {
+  const tasks = useSelector((state) => state.tasks);
   return (
     <div>
-      {todoList.map((todo) => (
+      {tasks.map((todo) => (
         <Todo
-          key={`${todo.id}`}
+          key={todo.id}
           id={todo.id}
           todoValue={todo.text}
-          onCheckChange={() => onCheckChange(todo.id)}
-          onEditClick={onEditClick}
-          onDeleteClick={() => onDeleteClick(todo.id)}
+          toggle={todo.isDone}
         />
       ))}
     </div>

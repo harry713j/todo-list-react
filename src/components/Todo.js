@@ -1,16 +1,45 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  checkValueChange,
+  deleteTodo,
+  editTodo,
+} from "../features/todo/todoSlice";
 
-function Todo({ id, todoValue, onCheckChange, onEditClick, onDeleteClick }) {
+function Todo({ id, todoValue, toggle }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(todoValue);
+  const dispatch = useDispatch();
+
+  const handleCheckChange = () => {
+    dispatch(
+      checkValueChange({
+        id: id,
+        isDone: !toggle,
+      })
+    );
+  };
+
+  const handleDeleteClick = () => {
+    dispatch(
+      deleteTodo({
+        id: id,
+      })
+    );
+  };
 
   const handleEditChange = (e) => {
     setEditedText(e.target.value);
   };
 
   const handleEditSave = () => {
-    onEditClick(id, editedText);
     setIsEditing(false);
+    dispatch(
+      editTodo({
+        id: id,
+        text: editedText,
+      })
+    );
   };
   return (
     <div className="card rounded shadow-sm gy-2">
@@ -18,7 +47,7 @@ function Todo({ id, todoValue, onCheckChange, onEditClick, onDeleteClick }) {
         <div className="d-flex align-items-center">
           <input
             type="checkbox"
-            onChange={onCheckChange}
+            onChange={handleCheckChange}
             className="form-check-input rounded-circle "
           />
           {isEditing ? (
@@ -80,7 +109,7 @@ function Todo({ id, todoValue, onCheckChange, onEditClick, onDeleteClick }) {
               <span className="card rounded shadow-sm mx-1">
                 <button
                   className="btn btn-light card-body d-flex align-items-center justify-content-center"
-                  onClick={onDeleteClick}
+                  onClick={handleDeleteClick}
                   style={{
                     height: "5px",
                     width: "5px",

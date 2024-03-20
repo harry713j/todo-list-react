@@ -1,16 +1,38 @@
-function CompleteTodo({ completedTodoList, onRemoveDoneTask, onCheckChange }) {
+import { useDispatch, useSelector } from "react-redux";
+import { checkValueChange, removeTodo } from "../features/todo/todoSlice";
+
+function CompleteTodo() {
+  const completedTasks = useSelector((state) => state.completedTasks);
+  const dispatch = useDispatch();
+
+  const handleRemoveDoneTask = (id) => {
+    dispatch(
+      removeTodo({
+        id: id,
+      })
+    );
+  };
+
+  const handleCheckChange = (id, toggle) => {
+    dispatch(
+      checkValueChange({
+        id: id,
+        isDone: !toggle,
+      })
+    );
+  };
   return (
     <>
-      {completedTodoList.map((todo) => {
+      {completedTasks.map((todo) => {
         return (
-          <div key={`${todo.id}`} className="card rounded shadow-none gy-2">
+          <div key={todo.id} className="card rounded shadow-none gy-2">
             <div className="card-body d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center">
                 <input
                   type="checkbox"
                   className="form-check-input rounded-circle"
                   checked
-                  onChange={() => onCheckChange(todo.id)}
+                  onChange={() => handleCheckChange(todo.id, todo.isDone)}
                 />
                 <span className="ms-2 align-middle fw-normal text-decoration-line-through">
                   {todo.text}
@@ -19,7 +41,7 @@ function CompleteTodo({ completedTodoList, onRemoveDoneTask, onCheckChange }) {
               <span className="card rounded shadow-sm mx-1">
                 <button
                   className="btn btn-light card-body d-flex align-items-center justify-content-center"
-                  onClick={() => onRemoveDoneTask(todo.id)}
+                  onClick={() => handleRemoveDoneTask(todo.id)}
                   style={{
                     height: "5px",
                     width: "5px",
